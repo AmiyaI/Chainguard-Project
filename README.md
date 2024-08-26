@@ -6,26 +6,26 @@ This project is part of my preparation for the **Associate Software Engineer (De
 
 ## Project Components 🛠️
 
-### 1. Terraform Configuration (terraform/)
+### 1. Terraform Configuration (`terraform/`)
 
-- **eks.tf**: Defines the configuration for setting up an Amazon EKS cluster. The cluster is configured to use **three availability zones** for high availability and resilience. It includes managed node groups, network configurations, and essential add-ons like **CoreDNS, Kube-Proxy,** and **VPC-CNI**.
-- **provider.tf**: Specifies the AWS provider and sets up local variables for region, cluster name, and networking details.
-- **vpc.tf**: Manages the VPC, including public, private, and intra subnets across three availability zones. The intra subnets are specifically designed for the EKS control plane.
+- **`eks.tf`**: Defines the configuration for setting up an Amazon EKS cluster. The cluster is configured to use **three availability zones** for high availability and resilience. It includes managed node groups, network configurations, and essential add-ons like **CoreDNS, Kube-Proxy,** and **VPC-CNI**.
+- **`provider.tf`**: Specifies the AWS provider and sets up local variables for region, cluster name, and networking details.
+- **`vpc.tf`**: Manages the VPC, including public, private, and intra subnets across three availability zones. The intra subnets are specifically designed for the EKS control plane.
 
-### 2. Kubernetes Manifests (manifests/)
+### 2. Kubernetes Manifests (`manifests/`)
 
-- **deployment.yml**: Initially used to deploy the **Chainguard NGINX** application with three replicas.
-- **service.yml**: Defines the **LoadBalancer** service to expose the NGINX application externally.
+- **`deployment.yml`**: Initially used to deploy the **Chainguard NGINX** application with three replicas.
+- **`service.yml`**: Defines the **LoadBalancer** service to expose the NGINX application externally.
 
-### 3. Helm Chart (chainguard-nginx/)
+### 3. Helm Chart (`chainguard-nginx/`)
 
 - **Helm Chart Overview**: The Helm chart manages the NGINX deployment and was derived from the Kubernetes manifests. It offers a more scalable and manageable approach to deployment.
-- **values.yaml**: Customizable parameters for the Helm chart, including the **Chainguard NGINX** image and service configuration.
-- **Chart.yaml**: Defines metadata for the Helm chart, including the chart and application versions.
+- **`values.yaml`**: Customizable parameters for the Helm chart, including the **Chainguard NGINX** image and service configuration.
+- **`Chart.yaml`**: Defines metadata for the Helm chart, including the chart and application versions.
 
-### 4. .gitignore 📝
+### 4. `.gitignore` 📝
 
-- The **.gitignore** file ensures that sensitive or unnecessary files, such as Terraform state files and Helm packaging outputs, are not committed to version control.
+- The **`.gitignore`** file ensures that sensitive or unnecessary files, such as Terraform state files and Helm packaging outputs, are not committed to version control.
 
 ## Project Execution ⚙️
 
@@ -83,6 +83,46 @@ This project is part of my preparation for the **Associate Software Engineer (De
 ## Project Benefits 🎯
 
 This project showcases my ability to set up and manage cloud infrastructure using Terraform and Kubernetes and to transition from manual deployment using manifests to a more automated and scalable approach using Helm. It demonstrates my understanding of key DevOps principles and tools relevant to the **Associate Software Engineer (DevOps)** role at Chainguard.
+
+## 🚀 Future Improvements & Industry Best Practices
+
+### 1. **Enhanced Security with Network Policies**
+   - **Why:** To minimize the attack surface by controlling communication between pods.
+   - **How:** Implement Kubernetes `NetworkPolicy` resources to restrict traffic and limit external access.
+
+### 2. **Implementing Secrets Management**
+   - **Why:** Secure sensitive data such as API keys and passwords.
+   - **How:** Integrate a secrets management tool like HashiCorp Vault or AWS Secrets Manager for secure storage.
+
+### 3. **CI/CD Pipeline Integration**
+   - **Why:** Automate deployment processes for consistency and speed.
+   - **How:** Use GitHub Actions, GitLab CI, or Jenkins to automate Terraform and Kubernetes deployments.
+
+### 4. **Implementing Monitoring and Logging**
+   - **Why:** To maintain application health and security through visibility.
+   - **How:** Integrate Prometheus and Grafana for monitoring; use Fluentd or ELK stack for centralized logging.
+
+### 5. **Enhanced Auto-Scaling and Load Management**
+   - **Why:** Ensure efficient handling of traffic with auto-scaling.
+   - **How:** Use Kubernetes HPA and Cluster Autoscaler to scale pods and nodes based on real-time metrics.
+
+### 6. **Advanced Helm Chart Customizations**
+   - **Why:** Improve modularity and manage multiple environments effectively.
+   - **How:** Use Helmfile or environment values for consistent and easy deployment configurations.
+
+### 7. **Security Hardening with Chainguard Images**
+   - **Why:** Chainguard images provide a secure foundation with zero CVEs, reducing vulnerabilities in containerized applications.
+   - **How:** Regularly scan images with tools like Trivy or Grype, and enforce image policies using OPA Gatekeeper to ensure only trusted images are deployed.
+
+### 8. **Improved Documentation and Onboarding**
+   - **Why:** Facilitate quicker onboarding and better understanding of the project.
+   - **How:** Expand documentation and add a `CONTRIBUTING.md` with guidelines for contributing.
+
+### 9. **Using Variable Files (`vars` files)**
+   - **Why:** Centralizing configuration in variable files enhances the manageability and reusability of my Terraform and Helm configurations. It allows for easier adjustments across different environments (e.g., dev, staging, production) without modifying the main configuration files directly.
+   - **How:** Create a `variables.tf` or a `vars.yaml` file where I define all configurable parameters. I can then reference these variables in my Terraform and Helm configurations. This approach makes my infrastructure more modular, reduces the risk of errors, and simplifies the process of scaling or updating deployments.
+
+Integrating variable files would further align the project with industry standards, making it easier to maintain and scale.
 
 ## Conclusion 🏁
 
