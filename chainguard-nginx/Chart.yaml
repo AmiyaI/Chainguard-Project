@@ -1,0 +1,17 @@
+apiVersion: v2
+name: chainguard-nginx  # The name of the Helm chart
+description: A Helm chart for Kubernetes  # A brief description of what this chart does
+
+# The chart can either be an 'application' or a 'library' chart.
+#
+# - Application charts: These are collections of Kubernetes resources that can be deployed as a unit.
+# - Library charts: These provide utilities or functions that can be included in other charts but do not deploy any resources on their own.
+type: application  # Specifies that this is an application chart
+
+# This is the chart version. It should be incremented each time you make changes to the chart itself,
+# including updates to templates or default values. It follows Semantic Versioning (https://semver.org/).
+version: 0.1.0  # The current version of this Helm chart
+
+# This is the version of the application that is being deployed. It should be updated with changes to the
+# actual application, not the chart. Unlike the chart version, this does not need to follow Semantic Versioning.
+appVersion: "1.16.0"  # The version of the application being deployed, in this case, NGINX version 1.16.0

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chainguard-nginx  # The name of the deployment
+spec:
+  replicas: 3  # Specifies that 3 replicas (pods) of this deployment will be created
+  selector:
+    matchLabels:
+      app: chainguard-nginx  # The selector ensures that the deployment manages pods with this label
+  template:
+    metadata:
+      labels:
+        app: chainguard-nginx  # This label is applied to the pods, which is used by the selector
+    spec:
+      containers:
+      - name: nginx  # The name of the container within the pod
+        image: cgr.dev/chainguard/nginx:latest  # Specifies the image to be used for the container
+        ports:
+        - containerPort: 80  # Exposes port 80 on the container for HTTP traffic

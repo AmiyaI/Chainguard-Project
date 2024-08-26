@@ -1,0 +1,116 @@
+# Default values for chainguard-nginx.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# The number of replicas (pods) to deploy
+replicaCount: 1
+
+# Image configuration
+image:
+  repository: cgr.dev/chainguard/nginx  # The repository where the NGINX image is stored
+  pullPolicy: IfNotPresent  # Policy for pulling the image (only pull if not already present)
+  tag: "latest"  # The specific tag of the image to use, defaults to the "latest"
+
+# Image pull secrets, used if the image repository requires authentication
+imagePullSecrets: []
+
+# Overrides for the names used in the templates
+nameOverride: ""
+fullnameOverride: ""
+
+# Service account configuration
+serviceAccount:
+  create: true  # Specifies whether a service account should be created
+  automount: true  # Automatically mount a ServiceAccount's API credentials?
+  annotations: {}  # Annotations to add to the service account
+  name: ""  # The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+
+# Annotations and labels for the pods
+podAnnotations: {}
+podLabels: {}
+
+# Security context settings for the pod
+podSecurityContext: {}
+  # fsGroup: 2000  # Group ID for file system permissions
+
+# Security context settings for the container
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL  # Drop all Linux capabilities
+  # readOnlyRootFilesystem: true  # Force the root filesystem to be read-only
+  # runAsNonRoot: true  # Force the container to run as a non-root user
+  # runAsUser: 1000  # The user ID to run the container as
+
+# Service configuration
+service:
+  type: ClusterIP  # Type of service to create (internal-only ClusterIP)
+  port: 80  # Port that the service will expose
+
+# Ingress configuration for external access
+ingress:
+  enabled: false  # Specifies whether Ingress should be created
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx  # Use the NGINX ingress controller
+    # kubernetes.io/tls-acme: "true"  # Use TLS with ACME
+  hosts:
+    - host: chart-example.local  # Example host for the ingress rule
+      paths:
+        - path: /
+          pathType: ImplementationSpecific  # Path type (ImplementationSpecific, Prefix, Exact)
+  tls: []
+  #  - secretName: chart-example-tls  # TLS secret for HTTPS
+  #    hosts:
+  #      - chart-example.local
+
+# Resource requests and limits
+resources: {}
+  # Uncomment to specify CPU/memory resource limits and requests
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# Liveness probe to check if the application is running
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+
+# Readiness probe to check if the application is ready to serve traffic
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+
+# Autoscaling configuration
+autoscaling:
+  enabled: false  # Enable or disable horizontal pod autoscaling
+  minReplicas: 1  # Minimum number of replicas
+  maxReplicas: 100  # Maximum number of replicas
+  targetCPUUtilizationPercentage: 80  # Target CPU utilization percentage for scaling
+  # targetMemoryUtilizationPercentage: 80  # Target memory utilization percentage for scaling
+
+# Additional volumes and volume mounts
+volumes: []
+# - name: foo
+#   secret:
+#     secretName: mysecret
+#     optional: false
+
+volumeMounts: []
+# - name: foo
+#   mountPath: "/etc/foo"
+#   readOnly: true
+
+# Node selector to constrain pods to specific nodes
+nodeSelector: {}
+
+# Tolerations to allow the pods to be scheduled on nodes with taints
+tolerations: []
+
+# Affinity to control pod scheduling based on labels
+affinity: {}

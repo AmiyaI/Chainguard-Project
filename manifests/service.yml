@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: chainguard-nginx-service  # The name of the service
+spec:
+  selector:
+    app: chainguard-nginx  # Matches pods with the label "app: chainguard-nginx"
+  ports:
+    - protocol: TCP  # The protocol for the service
+      port: 80  # The port that the service will expose externally
+      targetPort: 8080  # The port on the container that the service will forward traffic to
+  type: LoadBalancer  # Exposes the service externally via a cloud provider's load balancer
