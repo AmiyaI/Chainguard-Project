@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is part of my preparation for the **Associate Software Engineer (DevOps)** interview at Chainguard. It showcases my skills in setting up and managing Kubernetes clusters on AWS using Terraform and Helm, specifically deploying a **Chainguard NGINX** application. The project demonstrates my understanding of infrastructure as code (IaC) tools, Kubernetes, and Helm.
+This project is part of my preparation for the **Technical Support Enginner** application at Chainguard. It showcases my skills in setting up and managing Kubernetes clusters on AWS using Terraform and Helm, specifically deploying a **Chainguard NGINX** application. The project demonstrates my understanding of infrastructure as code (IaC) tools, Kubernetes, and Helm.
 
 ## Project Components 🛠️
 
