@@ -82,7 +82,7 @@ This project is part of my preparation for the **Technical Support Enginner** ap
 
 ## Project Benefits 🎯
 
-This project showcases my ability to set up and manage cloud infrastructure using Terraform and Kubernetes and to transition from manual deployment using manifests to a more automated and scalable approach using Helm. It demonstrates my understanding of key DevOps principles and tools relevant to the **Associate Software Engineer (DevOps)** role at Chainguard.
+This project showcases my ability to set up and manage cloud infrastructure using Terraform and Kubernetes and to transition from manual deployment using manifests to a more automated and scalable approach using Helm. It demonstrates my understanding of key DevOps principles and tools relevant to the **Technical Support Enginner** role at Chainguard.
 
 ## 🚀 Future Improvements & Industry Best Practices
 
